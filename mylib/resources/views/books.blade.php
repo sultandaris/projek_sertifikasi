@@ -6,7 +6,7 @@
     <title>Daftar Postingan</title>
     <style>
         body { font-family: sans-serif; }
-        .post { border-bottom: 1px solid #ccc; padding: 10px 0; }
+        .book { border-bottom: 1px solid #ccc; padding: 10px 0; }
     </style>
 </head>
 <body>
@@ -14,7 +14,7 @@
     <h1>Semua Postingan</h1>
 
     @foreach ($books as $book)
-        <div class="post">
+        <div class="book">
             {{-- Tampilkan judul post --}}
             <h2>{{ $book->judul }}</h2>
 
@@ -26,6 +26,8 @@
             @else  
                 <p>tidak ada</p>  
             @endif       
+            
+            <button>Pinjam</button>
              {{-- Ganti 'body' dengan nama kolom di tabelmu --}}
         </div>
     @endforeach

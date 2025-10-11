@@ -12,4 +12,10 @@ class BookController extends Controller
         $books = Book::all();
         return view('books', ['books' => $books]);
     }
+
+    public function changeStatus($id)
+    {
+        $book = Book::find($id);
+        $book->tersedia = !book->tersedia;
+    }
 }
