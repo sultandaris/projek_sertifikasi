@@ -21,7 +21,11 @@
             {{-- Tampilkan isi post --}}
             <p>{{ $book->penulis }}</p>
             <p>{{ $book->tahun_terbit }}</p>
-            <p>{{ $book->tersedia }}</p>
+            @if ($book->tersedia = 1)
+                <p>Ada</p>
+            @else  
+                <p>tidak ada</p>  
+            @endif       
              {{-- Ganti 'body' dengan nama kolom di tabelmu --}}
         </div>
     @endforeach
