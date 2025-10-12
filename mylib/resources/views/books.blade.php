@@ -21,16 +21,37 @@
             {{-- Tampilkan isi post --}}
             <p>{{ $book->penulis }}</p>
             <p>{{ $book->tahun_terbit }}</p>
-            @if ($book->tersedia = 1)
+            @if ($book->tersedia == 1)
                 <p>Ada</p>
-            @else  
-                <p>tidak ada</p>  
-            @endif       
-            
-            <button>Pinjam</button>
-             {{-- Ganti 'body' dengan nama kolom di tabelmu --}}
+            @else
+                <p>Tidak ada</p>
+            @endif
+            <form method="POST" action="/change/{{ $book->id }}">
+                @csrf
+                <button type="submit">Pinjam</button>
+            </form>
+            <form method="POST" action="/edit/{{ $book->id }}">
+                @csrf
+                <button type="submit">Edit</button>
+            </form>
+            <form method="POST" action="/delete/{{ $book->id }}">
+                @csrf
+                <button type="submit">Hapus</button>
+            </form>
         </div>
     @endforeach
+
+    <p>Tambah Buku</p>
+    <form action="/add" method="POST">
+        @csrf
+         <label for="title">judul</label>
+        <input type="text" id="title" name="title">
+        <label for="author">pengarang</label>
+        <input type="text" id="author" name="author">
+        <label for="published">tahun terbit</label>
+        <input type="text" id="published" name="published">
+        <button type="submit">Tambah</button>
+    </form>
 
 </body>
 </html>
