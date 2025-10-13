@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
+        Schema::create('book_categories', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-            $table->string('category_name');
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->unique(['book_id','category_id']);
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('book_categories');
     }
 };

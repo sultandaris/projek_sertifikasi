@@ -11,4 +11,5 @@ class Book extends Model
         'penulis',
         'tahun_terbit'
     ];
+
 }

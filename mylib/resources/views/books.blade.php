@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Postingan</title>
     <style>
-        body { font-family: sans-serif; }
+        .body { font-family: sans-serif; }
         .book { border-bottom: 1px solid #ccc; padding: 10px 0; }
     </style>
 </head>
 <body>
-
     <h1>Semua Postingan</h1>
-
     @foreach ($books as $book)
         <div class="book">
             {{-- Tampilkan judul post --}}
@@ -40,7 +38,6 @@
             </form>
         </div>
     @endforeach
-
     <p>Tambah Buku</p>
     <form action="/add" method="POST">
         @csrf
@@ -52,6 +49,5 @@
         <input type="text" id="published" name="published">
         <button type="submit">Tambah</button>
     </form>
-
 </body>
 </html>
