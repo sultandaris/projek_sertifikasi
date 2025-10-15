@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\BookCategory;
+use App\Models\Category;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
     public function book_index()
     {
-        $books = Book::all();
+        $books = Book::with('categories')->get();
         return view('books', ['books' => $books]);
     }
 
-    public function changeStatus($id)
+    public function changeStatus($book_id)
     {
-        $book = Book::find($id);
-        $book->tersedia = !($book->tersedia);
+        $book = Book::where('book_id', $book_id)->first();
+        Log::info('Book status changed', ['book' => $book]);
+        $book = Book::where('book_id', $book_id)->first();
+        $book->available = $book->available ? false : true;
+        Log::info('Book status changed', ['book' => $book]);
         $book->save();
         return redirect('/books');
     }
@@ -24,32 +31,30 @@ class BookController extends Controller
     public function addBook(Request $request)
     {
         $book = new Book();
-        $book->judul = $request->input('title');
-        $book->penulis = $request->input('author');
-        $book->tahun_terbit = $request->input('published');
-        $book->tersedia = true;
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
         $book->save();
         return redirect('/books');
     }
 
-    public function editBook($id)
+    public function editBook($book_id)
     {
-        $book = Book::find($id);
+        $book = Book::where('book_id', $book_id)->first();
         return view('edit', ['book' => $book]);
     }
 
-    public function updateBook(Request $request, $id)
+    public function updateBook(Request $request, $book_id)
     {
-        $book = Book::find($id);
-        $book->judul = $request->input('title');
-        $book->penulis = $request->input('author');
+        $book = Book::where('book_id', $book_id)->first();
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
         $book->save();
         return redirect('/books');
     }
 
-    public function deleteBook($id)
+    public function deleteBook($book_id)
     {
-        $book = Book::find($id);
+        $book = Book::where('book_id', $book_id)->first();
         $book->delete();
         return redirect('/books');
     }

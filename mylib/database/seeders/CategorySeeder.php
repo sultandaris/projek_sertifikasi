@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 
-
 class CategorySeeder extends Seeder
 {
     /**
@@ -14,7 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $category_names = [
+        $category_list = [
             'Fiction',
             'Non-Fiction',
             'History',
@@ -23,9 +22,9 @@ class CategorySeeder extends Seeder
             'Romance',
         ];
 
-        foreach($category_names as $name){
-            Category::create([
-                'category_name' => $name,
+        foreach($category_list as $name){
+            Category::create(attributes: [
+                'category_name' => $name
             ]);
         }
     }

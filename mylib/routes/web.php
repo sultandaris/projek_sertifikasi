@@ -10,10 +10,10 @@ Route::post('/add',[BookController::class, 'addBook']);
 
 Route::get('/books', [BookController::class, 'book_index']);
 
-Route::post('/change/{id}', [BookController::class, 'changeStatus']);
+Route::post('/change/{book_id}', [BookController::class, 'changeStatus']);
 
-Route::post('/edit/{id}', [BookController::class, 'editBook']);
+Route::post('/edit/{book_id}', [BookController::class, 'editBook']);
 
-Route::put('/books/{id}', [BookController::class, 'updateBook']);
+Route::put('/books/{book_id}', [BookController::class, 'updateBook']);
 
-Route::post('/delete/{id}', [BookController::class, 'deleteBook']);
+Route::post('/delete/{book_id}', [BookController::class, 'deleteBook']);

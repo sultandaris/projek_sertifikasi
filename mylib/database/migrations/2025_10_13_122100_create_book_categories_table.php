@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Book;
+use App\Models\Category;
 
 return new class extends Migration
 {
@@ -13,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('books', 'book_id')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories', 'category_id')->onDelete('cascade');
             $table->unique(['book_id','category_id']);
+            $table->timestamps();
         });
     }
 
