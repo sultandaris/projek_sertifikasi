@@ -1,23 +1,26 @@
-<!-- filepath: c:\Users\Sultan Daris\Desktop\projek_sertifikasi\mylib\resources\views\books.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Postingan</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans m-0">
-<div class="flex min-h-screen">
-    <nav class="w-64 bg-gray-100 p-6">
-        <ul class="space-y-4">
-            <li>- Dashboard</li>
-            <li>- Daftar Buku</li>
-            <li>- Kategori</li>
+<body class="bg-gray-100">
+<div class="container">
+    <!-- Sidebar -->
+    <nav class="sidebar p-8 fixed bg-blue-200 h-full w-48">
+        <h2 class="text-lg font-bold mb-4 text-center">MyLib</h2>
+        <ul class="list">
+            <li>
+                <a href="/books" class="text-blue-600 hover:underline">Daftar Buku</a>
+            </li>
         </ul>
     </nav>
-    <!-- Content -->
-    <div class="flex-1 p-8">
+    
+    <!-- Konten Utama -->
+    <div class="content p-8 ml-48">
         <h1 class="text-2xl font-bold mb-6">Semua Postingan</h1>
         @foreach ($books as $book)
             <div class="mb-6 border-b pb-4">
@@ -28,6 +31,7 @@
                     {{ $book->categories->pluck('category_name')->join(', ') }}
                 </p>
                 <p class="mt-2">
+                    Ketersediaan:
                     @if ($book->available)
                         <span class="text-green-600">Ada</span>
                     @else

@@ -17,3 +17,7 @@ Route::post('/edit/{book_id}', [BookController::class, 'editBook']);
 Route::put('/books/{book_id}', [BookController::class, 'updateBook']);
 
 Route::post('/delete/{book_id}', [BookController::class, 'deleteBook']);
+
+Route::get('/count', function () {
+    return view('count');
+});
